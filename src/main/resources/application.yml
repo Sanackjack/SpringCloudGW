@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: springCloudGW
+  cloud:
+    gateway:
+      metrics:
+        enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            maxAge: 3600
+#  profiles:
+#    active:  dev
+#  sleuth:
+#    enabled: true
+#    log:
+#      slf4j:
+#        enabled: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+
+route:
+  route-api: http://127.0.0.1:80
+
+rate-limit:
+  replenish-rate: 100000
+  burst-capacity: 300000
+
+circuit-breaker:
+  timeout-duration: 10
+  number-of-calls: 10
+  rate-threshold: 10
